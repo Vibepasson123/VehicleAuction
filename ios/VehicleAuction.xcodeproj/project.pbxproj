@@ -47,6 +47,7 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-VehicleAuction-VehicleAuctionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VehicleAuction-VehicleAuctionTests.release.xcconfig"; path = "Target Support Files/Pods-VehicleAuction-VehicleAuctionTests/Pods-VehicleAuction-VehicleAuctionTests.release.xcconfig"; sourceTree = "<group>"; };
 		99EA196AFC010461DE53F9AB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = VehicleAuction/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FE958B222CB0332300B6FEE7 /* vmauction.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vmauction.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +122,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				FE958B222CB0332300B6FEE7 /* vmauction.jpg */,
 				13B07FAE1A68108700A75B9A /* VehicleAuction */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* VehicleAuctionTests */,
