@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import {  TouchableOpacity } from 'react-native';
+import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Fontisto';
 import Home from '../screens/Home';
 import Search from '../screens/Search';
-import { TabBarContainer } from '../styles/Styled';
+import { BottomTabItem, BottomTabLabel, TabBarContainer } from '../styles/Styled';
+import { capitalizeFirstChar } from '../utils/helper';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,8 +18,8 @@ const BottomTabBar: React.FC<BottomTabBarProps> = () => {
   return (
     // eslint-disable-next-line react/no-unstable-nested-components
     <Tab.Navigator  tabBar={(props) => <TabBar {...props} /> } >
-      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Tab.Screen name="Search"  component={Search} options={{ headerShown: false }} />
+      <Tab.Screen name="home" component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name="search"  component={Search} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 };
@@ -31,7 +32,7 @@ interface TabBarProps {
 }
 
 const TabBar: React.FC<TabBarProps> = ({ state, navigation }) => {
-  const [selected, setSelected] = useState('Home');
+  const [selected, setSelected] = useState('home');
   const { routes } = state;
 
   const renderColor = (currentTab: string): string => (currentTab === selected ? 'white' : '#154341');
@@ -67,11 +68,11 @@ interface TabContentProps {
 
 const TabContent: React.FC<TabContentProps> = ({ color, tab, onPress, navState }) => {
   let iconName: string = '';
-  switch (tab.name) {
-    case 'Home':
+  switch (tab.name?.toLowerCase()) {
+    case 'home':
       iconName = 'home';
       break;
-    case 'Search':
+    case 'search':
       iconName = 'search';
       break;
     default:
@@ -99,27 +100,12 @@ const TabContent: React.FC<TabContentProps> = ({ color, tab, onPress, navState }
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <Animated.View style={[styles.tabItem, animatedStyle]}>
+      <BottomTabItem style={ animatedStyle}>
         <Icon name={iconName} size={23} color={navState ? color : 'white'} />
-        <Animated.Text style={[styles.label, labelStyle]}>
-          {navState ? tab.name : null}
-        </Animated.Text>
-      </Animated.View>
+        <BottomTabLabel style={labelStyle}>
+          {capitalizeFirstChar(navState ? tab.name : undefined) }
+        </BottomTabLabel>
+      </BottomTabItem>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  tabItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    borderRadius: 25,
-    height: 35,
-  },
-  label: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#FFF',
-  },
-});
