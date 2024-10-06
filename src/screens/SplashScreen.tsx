@@ -2,7 +2,7 @@ import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet,Animated, Dimensions } from 'react-native';
 import { SplashContainer } from '../styles/Styled';
-import PulseText from '../component/PulseText';
+import PulseText from '../component/pulse-text/PulseText';
 import { name as appName } from '../../app.json';
 import { addSpacesBeforeCapital } from '../utils/helper';
 

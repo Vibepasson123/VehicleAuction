@@ -1,12 +1,18 @@
-import { View, Text } from 'react-native';
+
 import React from 'react';
+import SearchHeader from '../component/search-header/Header';
+import { Container } from '../styles/Styled';
+
+
 
 const Home = () => {
+
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <Container>
+      <SearchHeader/>
+    </Container>
   );
 };
+
 
 export default Home;

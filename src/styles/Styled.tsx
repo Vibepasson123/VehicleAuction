@@ -40,3 +40,8 @@ export const BottomTabLabel = styled(Animated.Text)`
   font-weight: 600;
   color: #fff;
 `;
+
+export const Container = styled.View`
+  flex: 1;
+  align-items: center;
+`;
