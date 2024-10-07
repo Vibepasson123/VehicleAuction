@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { AnimatedContainer, CarouselAnimatedDot, CarouselImage, CarouselIndicatorContainer } from './styled';
+import { Car1, Car2, Car3, Car4 } from '../../configrations/Cars';
 
 
 interface ImageCarouselProps {
@@ -21,13 +22,13 @@ interface ImageCarouselProps {
 }
 
 const ImageCarousel: React.FC<ImageCarouselProps> = ({
-  images = [],
+  images = [Car1, Car2, Car3, Car4],
   height = 250,
   width = Dimensions.get('window').width,
   animation = false,
   autoSlide = false,
   showDots = false,
-  dotsColor = 'gray',
+  dotsColor = '#2DD4BF',
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatListType<any>>(null);
@@ -104,7 +105,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             style={{ transform: [{ rotate: animation ? tiltInterpolate : '0deg' }], height, width }}
           >
             <CarouselImage
-              source={{ uri: item }}
+              source={item}
             />
           </AnimatedContainer>
         )}

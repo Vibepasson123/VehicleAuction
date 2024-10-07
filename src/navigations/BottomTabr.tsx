@@ -82,7 +82,7 @@ const TabContent: React.FC<TabContentProps> = ({ color, tab, onPress, navState }
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor: navState ? withTiming('#60A5FA') : withTiming('transparent'),
+      backgroundColor: navState ? withTiming('#14B8A6') : withTiming('transparent'),
       width: navState ? withTiming(95) : withTiming(30),
     };
   });

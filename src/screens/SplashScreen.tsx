@@ -40,7 +40,7 @@ const SplashScreen: React.FC = () => {
         autoPlay
         speed={1}
         style={styles.lottieImage}
-        source={require('../assest/carAnimationBlue.json')}
+        source={require('../assest/carAnimationGreen.json')}
         renderMode={'SOFTWARE'}
       />
       <Animated.View style={[styles.animatedText, { transform: [{ translateY }] }]}>

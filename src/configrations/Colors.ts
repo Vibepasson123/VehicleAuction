@@ -1,5 +1,5 @@
 const colors = {
-    primary: '#2563EB',
+    primary: '#115E59',
     primaryBackground: '#ECFEFF',
 
     secondary: '#03dac6',
@@ -27,7 +27,7 @@ const colors = {
     fontColor:'#44403C',
     pulseDefault:'#ff6347',
 
-    tabBarContainer :' #3B82F6',
+    tabBarContainer :'#115E59',
   };
 
   export default colors;

@@ -386,3 +386,82 @@ export const CarImage = styled(Image)`
   height: 90px;
   border-radius: 15px;
 `;
+export const VehicleDetailsContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  background-color: #115e59;
+`;
+
+export const CarouselContainer = styled.View`
+  height: 250px;
+  width: 400px;
+  top: 60px;
+`;
+
+export const VehicleDetailsBottomContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  height: 60%;
+  width: 100%;
+  background-color: #022c22;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  shadow-color: #ffffff;
+  shadow-offset: 0px -10px;
+  shadow-opacity: 0.25;
+  shadow-radius: 30px;
+  elevation: 5;
+`;
+
+export const InfoContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  height: 25%;
+  width: 100%;
+  background-color: white;
+  align-items: center;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  shadow-color: #ffffff;
+  shadow-offset: 0px -10px;
+  shadow-opacity: 0.19;
+  shadow-radius: 30px;
+  elevation: 5;
+`;
+
+export const VehicleDetailsPriceContainer = styled.View`
+  position: absolute;
+  bottom: 20px;
+  height: 60%;
+  width: 90%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+export const VehicleDetailsBidButton = styled.TouchableOpacity`
+  height: 50px;
+  width: 130px;
+  background-color: #0d9488;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  shadow-color: #064e3b;
+  shadow-offset: -5px 10px;
+  shadow-opacity: 0.49;
+  shadow-radius: 12px;
+  elevation: 5;
+`;
+
+export const VehicleDetailsPriceText = styled.Text`
+  font-size: 27px;
+  font-weight: 800;
+  color: #52525b;
+`;
+
+export const VehicleDetailsButtonText = styled.Text`
+  font-size: 21px;
+  font-weight: 600;
+  color: white;
+`;
