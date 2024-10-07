@@ -5,9 +5,13 @@ import List from '../screens/List';
 import VehicleDetails from '../screens/VehicleDetails';
 
 
+export type RootStackParamList = {
+  Home: undefined;
+  VehicleList: undefined;
+  VehicleDetails: { id: number };
+};
 
-
-const Stack = createNativeStackNavigator() as any;
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppStack = () => {
   return (

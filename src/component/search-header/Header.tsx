@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Button, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Button, StatusBar, TouchableOpacity, View } from 'react-native';
+
 import {
+  FilterContainer,
   HeaderContainer,
   IconContainer,
   RightIconsContainer,
@@ -13,8 +13,10 @@ import {
   SuggestionsContainer,
   SuggestionText,
 } from './styled';
+//import { truncateText } from '../../utils/helper';
 import { useBottomSheetControls } from '../../hooks/use-bottom-sheet-controls';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet';
+import { Ionicons } from '../../configrations/VectorIcons';
 
 const SearchHeader: React.FC = () => {
   const { searchText, suggestions, handleSearchChange } = [] as any;
@@ -30,7 +32,7 @@ const SearchHeader: React.FC = () => {
     }
     return (
       <SuggestionsContainer>
-        {suggestions?.map((suggestion:any, index:any) => (
+        {suggestions?.map((suggestion: any, index: any) => (
           <TouchableOpacity
             key={index}
             onPress={(val) => {
@@ -48,7 +50,7 @@ const SearchHeader: React.FC = () => {
     <HeaderContainer>
       <SearchRow>
         <SearchContainer isFocused={isFocused}>
-          <Icon name="search-outline" size={24} color="#44403C" />
+          <Ionicons name="search-outline" size={24} color="#44403C" />
           <SearchInput
             placeholder="Search Here"
             placeholderTextColor="#44403C"
@@ -60,17 +62,17 @@ const SearchHeader: React.FC = () => {
             onBlur={() => setIsFocused(false)}
           />
         </SearchContainer>
-        { 2 + 2 === 5 ? renderSuggestions() : null}
+        {2 + 2 === 5 ? renderSuggestions() : null}
         <RightIconsContainer>
           <IconContainer onPress={sortOptionSheetActions.show}>
-            <Icon name="options-outline" size={24} color="white" />
+            <Ionicons name="options-outline" size={24} color="white" />
           </IconContainer>
         </RightIconsContainer>
       </SearchRow>
-      <BottomSheetComponent  ref={sortOptionSheetRef} >
-        <View style={{flex:1, height:200,width:'100%', alignSelf:'center'}}>
+      <BottomSheetComponent ref={sortOptionSheetRef} >
+        <FilterContainer>
           <Button title="Close" onPress={sortOptionSheetActions.close} />
-        </View>
+        </FilterContainer>
       </BottomSheetComponent>
     </HeaderContainer>
   );

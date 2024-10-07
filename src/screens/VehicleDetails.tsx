@@ -1,10 +1,17 @@
-import { View, Text } from 'react-native';
 import React from 'react';
+import { Text, View } from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { RootStackParamList } from '../navigations/AppStack';
 
-const VehicleDetails = () => {
+
+type VehicleDetailsRouteProp = RouteProp<RootStackParamList, 'VehicleDetails'>;
+
+const VehicleDetails:React.FC = () => {
+  const route = useRoute<VehicleDetailsRouteProp>();
+  const { id } = route.params;
   return (
-    <View>
-      <Text>VehicleDetails</Text>
+    <View style={{display:'flex',flex:1, padding:5, alignItems:'center'}}>
+      <Text>Vehicle ID: {id}</Text>
     </View>
   );
 };

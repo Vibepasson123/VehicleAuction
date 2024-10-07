@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Animated, View, StyleSheet } from 'react-native';
+import colors from '../../configrations/Colors';
 interface PulseTextProps {
     message: string;
     color?: string;
@@ -35,7 +36,7 @@ interface PulseTextProps {
         style={[
           styles.pulseText,
 
-          { transform: [{ scale: scaleAnim }], color: color || '#ff6347', fontSize:fontSize },
+          { transform: [{ scale: scaleAnim }], color: color || colors.pulseDefault, fontSize:fontSize },
         ]}
       >
         {message}

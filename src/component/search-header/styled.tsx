@@ -1,5 +1,7 @@
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
+import colors from '../../configrations/Colors';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -12,10 +14,10 @@ interface IconContainerProps {
   }
 
 export const HeaderContainer = styled.View`
-  background-color: #2563EB;
+  background-color: ${colors.primary};
   padding: 20px;
-  height:18%;
-  padding-top: 50px;
+  height: ${Platform.OS === 'ios' ? '18%' : '16%'};
+  padding-top:  ${Platform.OS === 'ios' ? '50px' : '30px'};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -27,23 +29,6 @@ export const HeaderContainer = styled.View`
   shadow-radius: 8px;
   elevation: 5;
   z-index:10;
-`;
-export const LocationContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 20px;
-`;
-export const LocationRow = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const LocationText = styled.Text`
-  color: white;
-  font-size: 14px;
-  margin-left: 6px;
 `;
 
 export const IconContainer = styled.TouchableOpacity<IconContainerProps>`
@@ -57,11 +42,11 @@ export const SearchContainer = styled.View<SearchContainerProps>`
   flex-direction: row;
   align-items: center;
   border-width: 1px;
-  border-color: ${(props) => (props.isFocused ? 'gray' : '#ccc')};
+  border-color: ${(props) => (props.isFocused ?  colors.borderFocused : colors.borderUnFocused)};
   padding: 10px;
   border-radius: 25px;
   background-color: #fff;
-  shadow-color: ${(props) => (props.isFocused ? 'gray' : 'transparent')};
+  shadow-color: ${(props) => (props.isFocused ? colors.borderFocused : 'transparent')};
   shadow-offset: 0px 2px;
   shadow-opacity: ${(props) => (props.isFocused ? 0.8 : 0)};
   shadow-radius: 3px;
@@ -72,8 +57,7 @@ export const SearchInput = styled.TextInput`
   flex: 1;
   font-size: 16px;
   padding-left: 10px;
-  font-color: #44403C;
-  
+  font-color: ${colors.fontColor};
 `;
 
 export const RightIconsContainer = styled.View`
@@ -105,6 +89,13 @@ export const SuggestionText = styled.Text`
   padding-vertical: 10px;
   padding-horizontal: 5px;
   border-bottom-width: 0.5px;
-  border-bottom-color: #ccc;
+  border-bottom-color: ${colors.borderUnFocused};
   font-size: 16px;
+`;
+
+export const FilterContainer = styled.View`
+  flex: 1;
+  height: 200px;
+  width: 100%;
+  align-self: center;
 `;

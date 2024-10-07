@@ -1,6 +1,6 @@
 import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet,Animated, Dimensions } from 'react-native';
+import { StyleSheet,Animated, Dimensions, StatusBar } from 'react-native';
 import { SplashContainer } from '../styles/Styled';
 import PulseText from '../component/pulse-text/PulseText';
 import { name as appName } from '../../app.json';
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: '100%',
     width: '100%',
+    backgroundColor:'#fff',
   },
   animatedText: {
     position: 'absolute',
@@ -32,6 +33,7 @@ const SplashScreen: React.FC = () => {
 
   return (
     <SplashContainer>
+      <StatusBar  backgroundColor="#fff" barStyle="light-content" />
       <LottieView
         progress={1}
         loop={false}

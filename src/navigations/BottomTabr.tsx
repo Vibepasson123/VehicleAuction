@@ -17,7 +17,7 @@ interface BottomTabBarProps {
 const BottomTabBar: React.FC<BottomTabBarProps> = () => {
   return (
     // eslint-disable-next-line react/no-unstable-nested-components
-    <Tab.Navigator  tabBar={(props) => <TabBar {...props} /> } >
+    <Tab.Navigator tabBar={(props) => <TabBar {...props} /> } >
       <Tab.Screen name="home" component={Home} options={{ headerShown: false }} />
       <Tab.Screen name="search"  component={Search} options={{ headerShown: false }} />
     </Tab.Navigator>
