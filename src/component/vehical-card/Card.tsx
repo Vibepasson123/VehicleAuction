@@ -41,7 +41,11 @@ const Card: React.FC<CardProps> = ({ item, scale, opacity }) => {
 
   return (
     <Animated.View style={{ transform: [{ scale }], opacity }}>
-      <CardContainer activeOpacity={0.8} onPress={() => navigation.navigate('VehicleDetails', { vehicle: item })}>
+      <CardContainer
+        testID="card-container"
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate('VehicleDetails', { vehicle: item })}
+      >
         <CardImageContainer>
           <CarImage
             source={{ uri: 'https://loremflickr.com/200/200/cars' }}
@@ -94,7 +98,11 @@ const Card: React.FC<CardProps> = ({ item, scale, opacity }) => {
           <PulseText message={item?.startingBid} />
         </CardFooter>
 
-        <CardFavoriteContainer activeOpacity={0.8} onPress={() => dispatch(toggleFavourite(item?.id))}>
+        <CardFavoriteContainer
+          testID="card-favorite-container"
+          activeOpacity={0.8}
+          onPress={() => dispatch(toggleFavourite(item?.id))}
+        >
           <Ionicons
             name="bookmark"
             size={34}
