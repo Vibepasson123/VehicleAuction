@@ -14,7 +14,7 @@ type BottomSheetComponentProps = {
 // I need to fix the bug on BottomSheetView when i have some spare time;
 export const BottomSheetComponent = React.forwardRef<BottomSheetModal, BottomSheetComponentProps>(
   ({ children, onClose, ...rest }, ref) => {
-    const [snapPoints, setSnapPoints] = useState<string[]>(['50%']);
+    const [snapPoints, setSnapPoints] = useState<string[]>(['70%']);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [contentHeight, setContentHeight] = useState<number | null>(null);
 

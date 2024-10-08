@@ -13,16 +13,24 @@ import {
   SuggestionsContainer,
   SuggestionText,
 } from './styled';
-//import { truncateText } from '../../utils/helper';
+
 import { useBottomSheetControls } from '../../hooks/use-bottom-sheet-controls';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet';
 import { Ionicons } from '../../configrations/VectorIcons';
+import CheckBoxList from '../check-box-list/CheckBoxList';
+
 
 const SearchHeader: React.FC = () => {
   const { searchText, suggestions, handleSearchChange } = [] as any;
   const [showSuggestions, setShowSuggestions] = React.useState(true);
   const [isFocused, setIsFocused] = React.useState(false);
   const [sortOptionSheetRef, sortOptionSheetActions] = useBottomSheetControls();
+
+  const filterHandler = React.useCallback((val: any) => {
+    console.log(val);
+    sortOptionSheetActions.close();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
 
@@ -71,7 +79,7 @@ const SearchHeader: React.FC = () => {
       </SearchRow>
       <BottomSheetComponent ref={sortOptionSheetRef} >
         <FilterContainer>
-          <Button title="Close" onPress={sortOptionSheetActions.close} />
+          <CheckBoxList onPress={(val) => filterHandler(val)} />
         </FilterContainer>
       </BottomSheetComponent>
     </HeaderContainer>

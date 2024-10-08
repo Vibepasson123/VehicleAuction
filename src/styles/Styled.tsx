@@ -240,7 +240,7 @@ export const SubTitle = styled.Text`
   text-align: center;
   text-decoration-line: underline;
   top: -5px;
-  margin-bottom: 27px; */
+  margin-bottom: 27px; 
 `;
 
 export const StepperText = styled.Text`
@@ -420,8 +420,7 @@ export const InfoContainer = styled.View`
   width: 100%;
   background-color: white;
   align-items: center;
-  border-top-left-radius: 60px;
-  border-top-right-radius: 60px;
+  border-radius: 60px;
   shadow-color: #ffffff;
   shadow-offset: 0px -10px;
   shadow-opacity: 0.19;
@@ -464,4 +463,135 @@ export const VehicleDetailsButtonText = styled.Text`
   font-size: 21px;
   font-weight: 600;
   color: white;
+`;
+
+export const VehicleDetailsFavoriteContainer = styled.TouchableOpacity`
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  right: 50px; 
+  top: -15px;  
+  z-index: 1;
+  justify-content: center;  
+  align-items: center;      
+`;
+export const FlotingBacButton = styled.TouchableOpacity`
+  height: 44px;
+  width: 44px;
+  position: absolute;
+  top: 6%;
+  left: 5%;
+  border-radius: 22px;
+  align-items: center;
+  justify-content: center;
+  background-color: #0d9488;
+  opacity:0.7;
+  elevation: 5;
+  z-index:1;
+`;
+
+export const ScrollableTextContainer = styled.ScrollView`
+  max-height: 100px;
+  width: 95%;
+  border-radius: 10px;
+  padding: 5px;
+  padding-left:15px;
+  align-self: center;
+ 
+`;
+export const ScrollableText = styled.Text`
+  font-size: 17px;
+  color: #2DD4BF;
+  font-weight: 600;
+  line-height:22px;
+  shadow-color: #DCFCE7;
+  shadow-offset: 0px -30px;
+  shadow-opacity: 0.8;
+  shadow-radius: 30px;
+  elevation: 5;
+
+`;
+
+export const VehicleDetailsDescription = styled.Text`
+  font-size: 16px;
+  top: 8px;
+  color: #34D399;
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const VehicleDetailsRow = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+`;
+
+export const VehicleTitleDetailsContainer = styled.View`
+  display: flex;
+  height: 60px;
+  width: 95%;
+  align-self: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-horizontal: 10px;
+  margin-top: 20px;
+`;
+
+export const VehicleDetailsTitleText = styled.Text`
+  color: white;
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: 700;
+`;
+
+export const VehicleDetailsSubTitleText = styled.Text`
+  color: white;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 500;
+  left: 50px;
+`;
+
+export const VehicleDetailsYearText = styled.Text`
+  color: white;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+`;
+export const AuctionDateText = styled.Text`
+  align-self: flex-end;
+  position: relative;
+  margin-top: 30px;
+  margin-right: 20px;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  color: #14B8A6;
+`;
+export const PageBody = styled.View`
+  flex:1;
+  position: 'relative';
+  alignItems: 'center';
+  max-height:70%;
+  padding-top:2%;
+  backgroundColor:#DBEAFE;
+
+`;
+export const Pagesection = styled.View`
+  flex:1;
+  position: 'relative';
+  margin-bottom:20px;
+  max-height:15%;
+  padding-top:2%;
+  margin-top:8%;
+  width:100%;
+  alignItems: 'center';
+  justifyContent:space-around;
+  flex-direction:row;
+`;
+export const SearchPageContainer = styled.View`
+  flex:1;
+  background-color:#DBEAFE;
 `;

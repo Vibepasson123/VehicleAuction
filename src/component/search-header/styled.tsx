@@ -99,3 +99,51 @@ export const FilterContainer = styled.View`
   width: 100%;
   align-self: center;
 `;
+export const PageHeaderContainer = styled.View`
+  background-color: ${colors.primary};
+  padding: 20px;
+  padding-top: 50px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  shadow-color: rgba(0, 0, 0, 0.25);
+  shadow-offset: 0px 9px;
+  shadow-opacity: 0.5;
+  shadow-radius: 8px;
+  elevation: 5;
+  z-index:10;
+`;
+export const PageRightIconsContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const PageHeaderTitleContainer = styled.View<{ isTabScreen: boolean }>`
+  align-self: center;
+  bottom: ${({ isTabScreen }) => (isTabScreen ? '-35%' : '15%')};
+`;
+export const PageIconContainer = styled.TouchableOpacity<IconContainerProps>`
+  background-color: ${(props) => props.backgroundColor || 'rgba(255, 255, 255, 0.2)'};
+  padding: 8px;
+  border-radius: ${(props) => (props.radius ? `${props.radius}px` : '10px')};
+`;
+
+
+export const SearchPageInputContainer = styled.View<SearchContainerProps>`
+  width: 95%;
+  flex-direction: row;
+  align-items: center;
+  justify-content:'space-between';
+  border-width: 1px;
+  border-color: ${(props) => (props.isFocused ?  colors.borderFocused : colors.borderUnFocused)};
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #fff;
+  shadow-color: ${(props) => (props.isFocused ? colors.borderFocused : 'transparent')};
+  shadow-offset: 0px 2px;
+  shadow-opacity: ${(props) => (props.isFocused ? 0.8 : 0)};
+  shadow-radius: 3px;
+  elevation: 5;
+`;

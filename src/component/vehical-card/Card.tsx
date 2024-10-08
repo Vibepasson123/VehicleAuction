@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({ item, scale, opacity }) => {
 
   return (
     <Animated.View style={{ transform: [{ scale }], opacity }}>
-      <CardContainer activeOpacity={0.8} onPress={() => navigation.navigate('VehicleDetails', { id: item.id })}>
+      <CardContainer activeOpacity={0.8} onPress={() => navigation.navigate('VehicleDetails', { vehicle: item })}>
         <CardImageContainer>
           <CarImage
             source={{ uri: 'https://loremflickr.com/200/200/cars' }}

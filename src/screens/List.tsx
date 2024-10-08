@@ -9,7 +9,6 @@ const CARD_HEIGHT = 200;
 const List: React.FC<{ fav?: boolean }> = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
-  // Memoizing updatedVehicles to avoid recalculating on each render
   const updatedVehicles = useMemo(
     () => vehicles.map((vehicle, index) => ({
       id: index + 1,
@@ -32,7 +31,7 @@ const List: React.FC<{ fav?: boolean }> = () => {
   }, [loading]);
 
   const renderItem = useCallback(({ item }: { item: any }) => {
-    const index = item.id - 1; // Get index directly from id
+    const index = item.id - 1;
     const inputRange = [-1, 0, CARD_HEIGHT * index, CARD_HEIGHT * (index + 2)];
     const opacityInputRange = [-1, 0, CARD_HEIGHT * index, CARD_HEIGHT * (index + 0.5)];
 
@@ -74,7 +73,7 @@ const List: React.FC<{ fav?: boolean }> = () => {
         offset: CARD_HEIGHT * index,
         index,
       })}
-      initialNumToRender={8} // Keep it low for better performance
+      initialNumToRender={8}
       onEndReached={loadMoreItems}
       onEndReachedThreshold={0.3}
     />
