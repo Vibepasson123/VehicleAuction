@@ -5,8 +5,6 @@ import { Container } from '../styles/Styled';
 import { StatusBar } from 'react-native';
 import List from './List';
 
-
-
 const Home = () => {
 
   return (

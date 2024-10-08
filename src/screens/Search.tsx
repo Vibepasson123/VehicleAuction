@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, View, Text, TouchableOpacity } from 'react-native';
+import { Modal, View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PageHeader from '../component/search-header/PageHeader';
 import { PageBody, Pagesection, SearchPageContainer } from '../styles/Styled';
@@ -10,12 +10,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SearchPageInputContainer } from '../component/search-header/styled';
 import styled from 'styled-components/native';
 import colors from '../configrations/Colors';
+import { useDispatch } from 'react-redux';
+import { filterByBidAndPriceRange } from '../redux/vehiclesSlicer';
+import { formatHumanReadableDate } from '../utils/helper';
+import moment from 'moment';
 
 const Search = () => {
   const navigation = useNavigation() as any;
-
-  const [bidStartDate, setBidStartDate] = useState<Date | null>(null);
-  const [bidOutTime, setBidOutTime] = useState<Date | null>(null);
+  const dispatch = useDispatch();
+  const [bidStartDate, setBidStartDate] = useState<string | null>(null);
+  const [bidOutDate, setBidOutDate] = useState<string | null>(null);
   const [priceRange, setPriceRange] = useState<number>(0);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isBidIn, setIsBidIn] = useState(true);
@@ -25,20 +29,27 @@ const Search = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const handleDateChange = (date: Date) => {
+  const handleDateChange = (date: string) => {
     if (isBidIn) {
       setBidStartDate(date);
     } else {
-      setBidOutTime(date);
+      setBidOutDate(date);
     }
     setModalVisible(false);
   };
 
   const handleSubmit = () => {
+    console.log(formatHumanReadableDate(bidStartDate),'hit');
+    if (bidStartDate === null && bidOutDate === null && priceRange === 0) {
+      Alert.alert('Please enter one of the field');
+      return;
+    }
+    dispatch(filterByBidAndPriceRange({
+      bidStartDate,
+      bidOutDate,
+      priceRange,
+    }));
     navigation.navigate('VehicleSearchList');
-    console.log('Bid Start Date:', bidStartDate ? bidStartDate : 'Not selected');
-    console.log('Bid Out Date:', bidOutTime ? bidOutTime : 'Not selected');
-    console.log(`Selected price range: ${priceRange} €`);
   };
 
   return (
@@ -50,7 +61,7 @@ const Search = () => {
             <SearchPageInputContainer isFocused={false}>
               <Ionicons name="calendar-outline" size={24} color="#44403C" />
               <InputText>
-                {bidStartDate ? bidStartDate.toDateString() : 'Bid Start Date'}
+                {bidStartDate ? moment(bidStartDate).format('YYYY-MM-DD') : 'Bid Start Date'}
               </InputText>
             </SearchPageInputContainer>
           </TouchableOpacityContainer>
@@ -59,7 +70,7 @@ const Search = () => {
             <SearchPageInputContainer isFocused={false}>
               <Ionicons name="calendar-outline" size={24} color="#44403C" />
               <InputText>
-                {bidOutTime ? bidOutTime.toDateString() : 'Bid Out Date'}
+                {bidOutDate ? moment(bidOutDate).format('YYYY-MM-DD') : 'Bid Out Date'}
               </InputText>
             </SearchPageInputContainer>
           </TouchableOpacityContainer>
@@ -67,7 +78,7 @@ const Search = () => {
         <Pagesection>
           <VaSlider
             minValue={0}
-            maxValue={1000}
+            maxValue={100000}
             step={10}
             currentValue={priceRange}
             onValueChange={(value) => setPriceRange(value)}
@@ -86,7 +97,7 @@ const Search = () => {
       >
         <ModalContainer>
           <ModalBody>
-            <CalendarPicker onDateChange={handleDateChange} />
+            <CalendarPicker onDateChange={(val)=>handleDateChange(String(val))} />
             <CloseButton onPress={() => setModalVisible(false)}>
               <CloseButtonText>Close</CloseButtonText>
             </CloseButton>

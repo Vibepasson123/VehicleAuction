@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import PulseText from '../pulse-text/PulseText';
 import { PageHeaderContainer, PageHeaderTitleContainer, PageIconContainer, PageRightIconsContainer } from './styled';
+import { useDispatch } from 'react-redux';
+import { resetData } from '../../redux/vehiclesSlicer';
 interface PageHeaderProps {
 	HeaderText: string;
 	istabScreen: boolean;
@@ -12,11 +14,12 @@ interface PageHeaderProps {
 
 const PageHeader: React.FC<PageHeaderProps> = ({ HeaderText, istabScreen }) => {
 	const navigation = useNavigation();
+	const dispatch = useDispatch();
 	return (
 		<PageHeaderContainer style={styles.headerContainer}>
 			<PageRightIconsContainer >
 			{!istabScreen && (
-				<PageIconContainer radius={50} style={styles.iconContainer} onPress={() => navigation.goBack()}>
+				<PageIconContainer radius={50} style={styles.iconContainer} onPress={() =>{ navigation.goBack(); dispatch(resetData());}}>
 					<Icon name="arrow-back" size={24} color="white" />
 				</PageIconContainer>)}
 			</PageRightIconsContainer>

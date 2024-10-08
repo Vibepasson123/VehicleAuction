@@ -1,22 +1,14 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useState} from 'react';
 import { Animated, StyleSheet, View, ActivityIndicator } from 'react-native';
-import vehicles from '../configrations/vehicles.json';
 import Card from '../component/vehical-card/Card';
+import { useSelector } from 'react-redux';
 
 const spacing = 10;
 const CARD_HEIGHT = 200;
 
 const List: React.FC<{ fav?: boolean }> = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
-
-  const updatedVehicles = useMemo(
-    () => vehicles.map((vehicle, index) => ({
-      id: index + 1,
-      ...vehicle,
-    })),
-    []
-  );
-
+  const {vehicles} = useSelector((DataState: any) => DataState.vehiclesData);
   const [visibleItems, setVisibleItems] = useState(8);
   const [loading, setLoading] = useState(false);
 
@@ -50,7 +42,7 @@ const List: React.FC<{ fav?: boolean }> = () => {
 
   return (
     <Animated.FlatList
-      data={updatedVehicles.slice(0, visibleItems)}
+      data={vehicles?.slice(0, visibleItems)}
       onScroll={Animated.event(
         [{ nativeEvent: { contentOffset: { y: scrollY } } }],
         { useNativeDriver: true }
