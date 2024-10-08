@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
+import { resetData } from '../../redux/vehiclesSlicer';
 
 interface ListItem {
 	id: string;
@@ -16,6 +18,7 @@ interface CheckBoxListProps {
 }
 
 const CheckBoxList = ({ onPress }: CheckBoxListProps) => {
+	const dispatch = useDispatch();
 	const [items, setItems] = useState<ListItem[]>([
 		{ id: '1', label: 'Bid Price  ⬆', field: 'startingBid', order: 'asc', checked: false },
 		{ id: '2', label: 'Bid Price  ⬇', field: 'startingBid', order: 'dsc', checked: false },
@@ -27,6 +30,7 @@ const CheckBoxList = ({ onPress }: CheckBoxListProps) => {
 		{ id: '8', label: 'Diesel ', field: 'diesel', order: 'asc', checked: false },
 		{ id: '9', label: 'EngineSize ⬆', field: 'engineSize', order: 'asc', checked: false },
 		{ id: '10', label: 'EngineSize ⬇', field: 'engineSize', order: 'dsc', checked: false },
+		{ id: '11', label: 'Clear-Filter', field: 'none', order: 'dsc', checked: false },
 	]);
 
 	const handlePress = (id: string) => {
@@ -35,6 +39,10 @@ const CheckBoxList = ({ onPress }: CheckBoxListProps) => {
 				item.id === id ? { ...item, checked: !item.checked } : item
 			)
 		);
+		if(id === '11'){
+			dispatch(resetData());
+
+		}
 		const selectedItem = items.find((item) => item.id === id);
 		if (selectedItem) {
 			onPress(selectedItem, !selectedItem.checked);
