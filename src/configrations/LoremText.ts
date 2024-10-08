@@ -1,0 +1,1 @@
+export const descriptionText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod urna sed lectus vestibulum, ac tincidunt erat blandit. Morbi ut convallis orci.';
