@@ -28,6 +28,8 @@ import colors from '../configrations/Colors';
 import VehicleDetailElementRow from '../component/details-screen/VehicleDetailsRow';
 import { formatHumanReadableDate } from '../utils/helper';
 import { descriptionText } from '../configrations/LoremText';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavourite } from '../redux/vehiclesSlicer';
 
 type VehicleDetailsNavigationProp = NavigationProp<RootStackParamList, 'VehicleDetails'>;
 
@@ -35,6 +37,8 @@ const VehicleDetails: React.FC = () => {
   const route = useRoute<RouteProp<RootStackParamList, 'VehicleDetails'>>();
   const navigation = useNavigation<VehicleDetailsNavigationProp>();
   const { vehicle } = route.params;
+  const dispatch = useDispatch();
+  const { favourites } = useSelector((DataState: any) => DataState.vehiclesData);
   const vehicleDetails = [
     { iconName: 'engine', title: 'Engine', description: vehicle?.engineSize, IconComponent: MaterialCommunityIcons },
     { iconName: 'gas-pump', title: 'Fuel', description: vehicle?.fuel, IconComponent: FontAwesome5 },
@@ -44,15 +48,19 @@ const VehicleDetails: React.FC = () => {
   return (
     <VehicleDetailsContainer>
       <StatusBar backgroundColor="#115e59" barStyle="light-content" />
-      <FlotingBacButton onPress={()=> navigation.goBack()} >
+      <FlotingBacButton onPress={() => navigation.goBack()} >
         <Ionicons name="chevron-back" size={24} color={'#FFF'} />
       </FlotingBacButton>
       <CarouselContainer>
         <ImageCarousel height={200} width={400} animation autoSlide showDots />
       </CarouselContainer>
       <VehicleDetailsBottomContainer>
-        <VehicleDetailsFavoriteContainer activeOpacity={0.8}>
-          <Ionicons name="bookmark" size={44} color={vehicle?.favourite ? colors.favSelected : colors.favUnSelected} />
+        <VehicleDetailsFavoriteContainer activeOpacity={0.8} onPress={() => dispatch(toggleFavourite(vehicle?.id))}>
+          <Ionicons
+            name="bookmark"
+            size={44}
+            color={(favourites || []).includes(vehicle?.id) ? colors.favSelected : colors.favUnSelected}
+          />
         </VehicleDetailsFavoriteContainer>
         <VehicleTitleDetailsContainer>
           <VehicleDetailsTitleText>
@@ -76,7 +84,7 @@ const VehicleDetails: React.FC = () => {
             />
           ))}
         </VehicleDetailsRow>
-        <AuctionDateText>{formatHumanReadableDate(vehicle?.auctionDateTime,true)}</AuctionDateText>
+        <AuctionDateText>{formatHumanReadableDate(vehicle?.auctionDateTime, true)}</AuctionDateText>
         <InfoContainer>
           <VehicleDetailsPriceContainer>
             <VehicleDetailsPriceText> ${vehicle?.startingBid}</VehicleDetailsPriceText>

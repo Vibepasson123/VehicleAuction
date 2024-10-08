@@ -6,11 +6,14 @@
  */
 
 import React from 'react';
-import { LogBox } from 'react-native';
+import { ActivityIndicator, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AppStack from './src/navigations/AppStack';
+import { Provider } from 'react-redux';
 import SplashScreen from './src/screens/SplashScreen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistedStore, store } from './src/redux/store';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 LogBox.ignoreAllLogs();
 
@@ -24,11 +27,15 @@ const App: React.FC = () => {
   } else {
     return (
       <GestureHandlerRootView style={RootStyle}>
-        <BottomSheetModalProvider>
-        <NavigationContainer>
-          <AppStack />
-        </NavigationContainer>
-        </BottomSheetModalProvider>
+        <Provider store={store}>
+          <PersistGate loading={<ActivityIndicator size="large" color="#000" />} persistor={persistedStore}>
+            <BottomSheetModalProvider>
+              <NavigationContainer>
+                <AppStack />
+              </NavigationContainer>
+            </BottomSheetModalProvider>
+          </PersistGate>
+        </Provider>
       </GestureHandlerRootView>
     );
   }

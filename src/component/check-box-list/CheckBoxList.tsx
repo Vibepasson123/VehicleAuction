@@ -7,25 +7,26 @@ interface ListItem {
 	id: string;
 	label: string;
 	checked: boolean;
+	field: string;
+	order: 'asc' | 'dsc';
 }
 
 interface CheckBoxListProps {
-	onPress: (id: string, checked: boolean) => void;
+	onPress: (val:ListItem, checked: boolean) => void;
 }
 
 const CheckBoxList = ({ onPress }: CheckBoxListProps) => {
 	const [items, setItems] = useState<ListItem[]>([
-		{ id: '1', label: 'Bid Price  ⬆', checked: false },
-		{ id: '2', label: 'Bid Price  ⬇', checked: false },
-		{ id: '3', label: 'Year         ⬆', checked: false },
-		{ id: '4', label: 'Year         ⬇', checked: false },
-		{ id: '5', label: 'Modal      ⬆', checked: false },
-		{ id: '6', label: 'Modal      ⬇', checked: false },
-		{ id: '7', label: 'Petrol ', checked: false },
-		{ id: '8', label: 'Diesel ', checked: false },
-		{ id: '9', label: 'Favourite ', checked: false },
-		{ id: '10', label: 'EngineSize ⬆', checked: false },
-		{ id: '11', label: 'EngineSize ⬇', checked: false },
+		{ id: '1', label: 'Bid Price  ⬆', field: 'startingBid', order: 'asc', checked: false },
+		{ id: '2', label: 'Bid Price  ⬇', field: 'startingBid', order: 'dsc', checked: false },
+		{ id: '3', label: 'Year         ⬆', field: 'year', order: 'asc', checked: false },
+		{ id: '4', label: 'Year         ⬇', field: 'year', order: 'dsc', checked: false },
+		{ id: '5', label: 'Modal      ⬆', field: 'model', order: 'asc', checked: false },
+		{ id: '6', label: 'Modal      ⬇', field: 'model', order: 'dsc', checked: false },
+		{ id: '7', label: 'Petrol ', field: 'petrol', order: 'asc', checked: false },
+		{ id: '8', label: 'Diesel ', field: 'diesel', order: 'asc', checked: false },
+		{ id: '9', label: 'EngineSize ⬆', field: 'engineSize', order: 'asc', checked: false },
+		{ id: '10', label: 'EngineSize ⬇', field: 'engineSize', order: 'dsc', checked: false },
 	]);
 
 	const handlePress = (id: string) => {
@@ -36,7 +37,7 @@ const CheckBoxList = ({ onPress }: CheckBoxListProps) => {
 		);
 		const selectedItem = items.find((item) => item.id === id);
 		if (selectedItem) {
-			onPress(id, !selectedItem.checked);
+			onPress(selectedItem, !selectedItem.checked);
 		}
 	};
 

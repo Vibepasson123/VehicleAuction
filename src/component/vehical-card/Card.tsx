@@ -18,13 +18,15 @@ import { CardFooter } from './styled';
 import PulseText from '../pulse-text/PulseText';
 import colors from '../../configrations/Colors';
 import {
-   FontAwesome,
-   FontAwesome5,
-   Ionicons,
-   MaterialCommunityIcons,
-   } from '../../configrations/VectorIcons';
+  FontAwesome,
+  FontAwesome5,
+  Ionicons,
+  MaterialCommunityIcons,
+} from '../../configrations/VectorIcons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigations/AppStack';
+import { toggleFavourite } from '../../redux/vehiclesSlicer';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface CardProps {
   item: any;
@@ -34,6 +36,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ item, scale, opacity }) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const dispatch = useDispatch();
+  const { favourites } = useSelector((DataState: any) => DataState.vehiclesData);
 
   return (
     <Animated.View style={{ transform: [{ scale }], opacity }}>
@@ -90,8 +94,12 @@ const Card: React.FC<CardProps> = ({ item, scale, opacity }) => {
           <PulseText message={item?.startingBid} />
         </CardFooter>
 
-        <CardFavoriteContainer activeOpacity={0.8}>
-          <Ionicons name="bookmark" size={34} color={item?.favourite ? colors.favSelected : colors.favUnSelected}  />
+        <CardFavoriteContainer activeOpacity={0.8} onPress={() => dispatch(toggleFavourite(item?.id))}>
+          <Ionicons
+            name="bookmark"
+            size={34}
+            color={(favourites || []).includes(item?.id) ? colors.favSelected : colors.favUnSelected}
+          />
         </CardFavoriteContainer>
       </CardContainer>
     </Animated.View>
